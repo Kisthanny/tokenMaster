@@ -11,6 +11,8 @@ contract TokenMaster is ERC721 {
     uint256 public occasionCounter;
     uint256 public nftCounter;
 
+    uint256[] occasionList;
+
     struct Occasion {
         uint256 id;
         string name;
@@ -58,6 +60,7 @@ contract TokenMaster is ERC721 {
             _time,
             _location
         );
+        occasionList.push(occasionCounter);
     }
 
     function mint(uint256 _id, uint256 _seat) public payable {
@@ -96,5 +99,9 @@ contract TokenMaster is ERC721 {
 
     function getSeatsTaken(uint256 _id) public view returns (uint256[] memory) {
         return seatsTaken[_id];
+    }
+
+    function getOccasionList() public view returns (uint256[] memory) {
+        return occasionList;
     }
 }
